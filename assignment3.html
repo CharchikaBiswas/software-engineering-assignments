@@ -1,7 +1,6 @@
-<!-- Name: Md Kabirul Hassan
-Roll: 12100119058
-Stream: CSE(B) -->
-
+<!--Name: Charchika Biswas
+CSE B, 3rd Year, 5th sem
+Roll: 12100119084-->
 <html>
 <head>
   <title>Tour Registration Form</title>
@@ -46,7 +45,7 @@ Stream: CSE(B) -->
         <tr>
           <td align="right">START_DATE: </td>
           <td>
-            <input type="date" name="startDate" id="startDate" onblur="checkStartDate(),activateEndDate()">
+            <input type="date" name="startDate" id="startDate" onfocus="checkStartDate()" min="">
           </td>
           <td>
             <div id="divStartDate"></div>
@@ -55,7 +54,7 @@ Stream: CSE(B) -->
         <tr>
           <td align="right">END_DATE: </td>
           <td>
-            <input disabled type="date" name="endDate" id="endDate" onblur="checkEndDate()">
+            <input disabled type="date" name="endDate" id="endDate" onblur="checkEndDate()" min="" max="">
           </td>
           <td>
             <div id="divEndDate"></div>
