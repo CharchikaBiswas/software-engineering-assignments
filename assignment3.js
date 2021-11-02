@@ -20,7 +20,7 @@ function checkName(htmlObj) {
       flagName = false;
     } else {
       flagName = true;
-      document.getElementById("divTourName").innerHTML = "<img src=images/tick.jpg>";
+      document.getElementById("divTourName").innerHTML = "<img src=tick.jpg>";
       document.getElementById("txtTourName").className = "";
     }
   }
@@ -40,7 +40,7 @@ function checkDest(htmlObj) {
       flagDest = false;
     } else {
       flagDest = true;
-      document.getElementById("divDestName").innerHTML = "<img src=images/tick.jpg>";
+      document.getElementById("divDestName").innerHTML = "<img src=tick.jpg>";
       document.getElementById("txtDestination").className = "";
     }
   }
@@ -48,21 +48,33 @@ function checkDest(htmlObj) {
 
 function checkStartDate() {
   var strStDate = document.getElementById("startDate").value;
-  var stdate = new Date(strStDate).setHours(0, 0, 0, 0);
-  var today = new Date().setHours(0, 0, 0, 0);
-  console.log(strStDate);
+  var stdate = new Date(strStDate);
+  var minDate= new Date();
+  minDate.setHours(0,0,0,0);
+  var year=minDate.getFullYear();
+  var month=minDate.getMonth()+1;
+  var date=minDate.getDate();
+  if(month<10)
+  {
+    month="0"+month;
+  }
+  if(date<10){
+    date="0"+date;
+  }
+  var today=year+"-"+month+"-"+date;
+  document.getElementById("startDate").setAttribute("min",today);
   if (strStDate == "") {
     flagStartDate = false;
-    document.getElementById("divStartDate").innerHTML = "Please enter start date";
   } else {
     flagStartDate = false;
-    if (stdate < today) {
+    if (stdate < minDate) {
       document.getElementById("divStartDate").innerHTML = "Invalid Date.Please enter valid date. Minimum date is today.";
       document.getElementById("startDate").className = "error-text";
       flagStartDate = false;
     } else {
       flagStartDate = true;
-      document.getElementById("divStartDate").innerHTML = "<img src=images/tick.jpg>";
+      activateEndDate();
+      document.getElementById("divStartDate").innerHTML = "<img src=tick.jpg>";
       document.getElementById("startDate").className = "";
     }
   }
@@ -75,9 +87,26 @@ function checkEndDate() {
   var strStDate = document.getElementById("startDate").value;
   var stdate = new Date(strStDate);
   var strEndDate = document.getElementById("endDate").value;
-  var endDate = new Date(strEndDate);
   var minDate = new Date(stdate.getFullYear(), stdate.getMonth(), stdate.getDate() + 1);
-  var maxDate = new Date(endDate.getFullYear(), endDate.getMonth(), endDate.getDate() + 90);
+  var maxDate = new Date(stdate.getFullYear(), stdate.getMonth()+3, stdate.getDate());
+  var endDate = new Date(strEndDate);
+  var year=minDate.getFullYear();
+  var month=minDate.getMonth()+1;
+  var date=minDate.getDate();
+  if(month<10)
+  {
+    month="0"+month;
+  }
+  if(date<10){
+    date="0"+date;
+  }
+  var mind=year+"-"+month+"-"+date;
+  document.getElementById("startDate").setAttribute("min",mind);
+  var year=maxDate.getFullYear();
+  var month=maxDate.getMonth()+1;
+  var date=maxDate.getDate();
+  var maxd=year+"-"+month+"-"+date;
+  document.getElementById("startDate").setAttribute("min",maxd);
   if (strEndDate == "") {
     flagEndDate = false;
     document.getElementById("divEndDate").innerHTML = "Please enter end date";
@@ -89,7 +118,7 @@ function checkEndDate() {
       flagEndDate = false;
     } else {
       flagEndDate = true;
-      document.getElementById("divEndDate").innerHTML = "<img src=images/tick.jpg>";
+      document.getElementById("divEndDate").innerHTML = "<img src=tick.jpg>";
       document.getElementById("endDate").className = "";
     }
   }
@@ -107,7 +136,7 @@ function checkPrice() {
       flagPrice = false;
     } else {
       flagPrice = true;
-      document.getElementById("divPrice").innerHTML = "<img src=images/tick.jpg>";
+      document.getElementById("divPrice").innerHTML = "<img src=tick.jpg>";
       document.getElementById("txtPrice").className = "";
     }
   }
